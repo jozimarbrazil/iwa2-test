@@ -10,19 +10,7 @@ var port = 8000;
 app.use(bodyParser.json())
 app.use(logger('tiny'));
 
-app.get('/hello/:foo/:bar', (req, res) => {
-    res.json({message: 'Hello BScBest!', data: [
-        req.params.foo,
-        req.params.bar
-    ]});
-});
-//req = request and res=response 
-app.post('/hello', (req, res) => {
-
-    res.json({result: 'Post was sent', data:req.body});
-}
-
-);
+app.use(require('./routers'));
 
 
 
