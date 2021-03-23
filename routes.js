@@ -17,4 +17,4 @@ router.post('/hello', (req, res) => {
 
 );
 
-module.exports = routers;
+module.exports = router;

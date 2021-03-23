@@ -10,7 +10,7 @@ var port = 8000;
 app.use(bodyParser.json())
 app.use(logger('tiny'));
 
-app.use(require('./routers'));
+app.use(require('./routes'));
 
 
 
