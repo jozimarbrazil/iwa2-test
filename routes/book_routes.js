@@ -1,20 +1,56 @@
-const express = require('express'),
-router = express.Router();
+var ObjectID = require('mongodb').ObjectID
+module.exports = fucntion(app, db); {
+    app.get('/books/:id', (req, res) =>{
+        const id = req.params.id;
+       const details = {'_id': new ObjectID(id)};
+       db.collection('books').findOne(details, (err, item) => {
+          if (err){
+            res.send({'error': 'An error has occured'});
+        }else{
+            res.send(item);
+        } 
+       });
+    } );
 
 
+      app.delete('/books/:id', (req, res) =>{
+        const id = req.params.id;
+       const details = {'_id': new ObjectID(id)};
+       db.collection('books').remove(details, (err, item) => {
+          if (err){
+            res.send({'error': 'An error has occured'});
+        }else{
+            res.send('book' + id + 'deleted');
+        } 
+       });
+    } );
 
-router.get('/hello/:foo/:bar', (req, res) => {
-    res.json({message: 'Hello BScBest!', data: [
-        req.params.foo,
-        req.params.bar
-    ]});
-});
-//req = request and res=response 
-router.post('/hello', (req, res) => {
+      app.put('/books/:id', (req, res) =>{
+        const id = req.params.id;
+       const details = {'_id': new ObjectID(id)};
+       const note = {text: req.body.body, title: req.body.title}
+       db.collection('books').update(details,book, (err, item) => {
+          if (err){
+            res.send({'error': 'An error has occured'});
+        }else{
+            res.send(item)
+        } 
+       });
+    } );
 
-    res.json({result: 'Post was sent', data:req.body});
-}
+    app.post('/books', (req, res) => {
+        const note = {text: req.body.body, title: req.body.title}
+    db.collection('books').insert(book, (err, result) => {
+        if (err){
+            res.send({'error': 'An error has occured'});
+        }else{
+            res.send(result.ops[0])
+        }
 
-);
+    });
+       
+    });
 
-module.exports = router;
+};
+
+

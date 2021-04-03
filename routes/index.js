@@ -1,3 +1,11 @@
+const bookRoutes = require('./book_routes');
+
+module.exports = function(app, db){
+    bookRoutes(app,db);
+}
+
+
+
 axios = require('axios'),
 logger = require('morgan'),
 cors = require('cors'),
